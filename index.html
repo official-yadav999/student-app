@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Student Performance Monitoring System</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="login-bg">
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+  <h2>Welcome</h2>
+  <p>Please enter your details</p>
+
+  <select id="role">
+    <option>Student</option>
+    <option>Teacher</option>
+    <option>Parent</option>
+  </select>
+
+  <input id="userId" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+
+  <button onclick="login()">Sign In</button>
+</div>
+
+<!-- STUDENT DASHBOARD -->
+<div class="dashboard hidden" id="studentDashboard">
+  <h2>Student Dashboard</h2>
+
+  <div class="tabs">
+    <button class="tabBtn active" onclick="showSection('marks',this)">Marks</button>
+    <button class="tabBtn" onclick="showSection('attendance',this)">Attendance</button>
+  </div>
+
+  <div id="marksArea">
+    <canvas id="marksChart"></canvas>
+    <div id="marksSection" class="grid-box"></div>
+    <div id="guideBox" class="card"></div>
+  </div>
+
+  <div id="attendanceArea" class="hidden">
+    <canvas id="attendanceChart"></canvas>
+    <div id="attendanceSection" class="grid-box"></div>
+  </div>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<!-- PARENT DASHBOARD -->
+<div class="dashboard hidden" id="parentDashboard">
+  <h2>Parent Dashboard</h2>
+  <div id="parentContent"></div>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<!-- TEACHER DASHBOARD -->
+<div class="dashboard hidden teacher-ui" id="teacherDashboard">
+
+  <div class="teacher-header">
+    <div>
+      <h1>Teacher Dashboard</h1>
+      <p>Manage student records and performance</p>
+    </div>
+    <div class="teacher-actions-top">
+      <button class="export-btn">Export All Data</button>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="search-add">
+    <input type="text" placeholder="🔍 Search by name, roll, or batch...">
+    <button class="add-btn">+ Add New Student</button>
+  </div>
+
+  <table id="studentsTable" class="teacher-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Batch</th>
+        <th>Avg Marks</th>
+        <th>Avg Attendance</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="stats-cards">
+    <div class="stat-card">
+      <h3>Total Students</h3>
+      <h2 id="totalStudents">0</h2>
+    </div>
+    <div class="stat-card">
+      <h3>Average Marks</h3>
+      <h2 id="overallMarks">0%</h2>
+    </div>
+    <div class="stat-card">
+      <h3>Average Attendance</h3>
+      <h2 id="overallAttendance">0%</h2>
+    </div>
+    <div class="stat-card">
+      <h3>At Risk</h3>
+      <h2 id="atRisk">0</h2>
+    </div>
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
